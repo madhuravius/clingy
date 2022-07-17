@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 )
 
 // CaptureWindow - captures the terminal window
@@ -17,10 +18,14 @@ func CaptureWindow(logger *log.Logger, buildDirectory string, command string, sc
 
 	fmt.Println("> ", command)
 	commandAndArgs := strings.Split(command, " ")
-	command, args := commandAndArgs[0], commandAndArgs[1:]
-	output, _ := exec.Command(command, args...).CombinedOutput() // always allow the command to possibly error
+	var args []string
+	if len(commandAndArgs) > 1 {
+		args = commandAndArgs[1:]
+	}
+	output, _ := exec.Command(commandAndArgs[0], args...).CombinedOutput() // always allow the command to possibly error
 	fmt.Println(string(output))
 	logger.Println("Finished executing command", command)
+	time.Sleep(150 * time.Millisecond) // waiting because the parent terminal process may not have finished rendering
 
 	imageCommand := exec.Command(
 		"magick",

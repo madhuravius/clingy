@@ -8,10 +8,10 @@ steps:
   command: make build
 - label: clingy init
   description: displaying printout of only calling clingy
-  command: build/clingy -d
+  command: build/clingy
 - label: clingy help
   description: display help text for clingy
-  command: build/clingy --help -d
+  command: build/clingy --help
 - label: finish
   description: finished clingy flow
   command: echo -e "\033[92mComplete\033[0m"
