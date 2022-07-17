@@ -28,7 +28,11 @@ var runCmd = &cobra.Command{
 
 		for idx, step := range clingyData.Steps {
 			internal.ClearTerminal()
-			imagePath := internal.CaptureWindow(logger, getOutputPath(), step.Command, strconv.Itoa(idx))
+			args := step.Args
+			if args == nil {
+				args = []string{}
+			}
+			imagePath := internal.CaptureWindow(logger, getOutputPath(), step.Command, args, strconv.Itoa(idx))
 			if step.Label != "" {
 				internal.AddLabelToImage(logger, step.Label, imagePath)
 			}

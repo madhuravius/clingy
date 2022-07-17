@@ -3,7 +3,10 @@ init:
 .PHONY: init
 
 build:
-	go build -o build/clingy
+	echo "Dependencies used: "
+	go list -m all
+	echo "Building"
+	go build -v -o build/clingy
 .PHONY: build
 
 start:

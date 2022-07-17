@@ -13,7 +13,9 @@ const templateFile = `label: clingy flow
 steps:
 - label: start
   description: starting clingy flow
-  command: echo "Starting"`
+  command: echo 
+  args:
+	- "Starting"`
 
 // initCmd - inits a .clingy.yaml for use in the current path
 var initCmd = &cobra.Command{

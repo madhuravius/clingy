@@ -2,16 +2,26 @@ label: clingy flow
 steps:
 - label: start
   description: starting clingy flow
-  command: echo -e "\033[34mStarting\033[0m"
+  command: echo
+  args:
+    - -e
+    - \033[34mStarting\033[0m
 - label: build clingy
   description: building clingy with Makefile target
-  command: make build
+  command: make
+  args:
+    - build
 - label: clingy init
   description: displaying printout of only calling clingy
-  command: build/clingy
+  command: ./build/clingy
 - label: clingy help
   description: display help text for clingy
-  command: build/clingy --help
+  command: ./build/clingy
+  args:
+    - --help
 - label: finish
   description: finished clingy flow
-  command: echo -e "\033[92mComplete\033[0m"
+  command: echo
+  args:
+    - -e
+    - \033[92mComplete\033[0m
