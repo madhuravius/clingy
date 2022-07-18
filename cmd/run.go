@@ -32,16 +32,22 @@ var runCmd = &cobra.Command{
 			if args == nil {
 				args = []string{}
 			}
-			imagePath := internal.CaptureWindow(logger, getOutputPath(), step.Command, args, strconv.Itoa(idx))
+			imagePath := internal.CaptureWindow(logger, getOutputPath(), step.Command, args, strconv.Itoa(idx), ".jpg")
 			if step.Label != "" {
 				internal.AddLabelToImage(logger, step.Label, imagePath)
 			}
 			if step.Description != "" {
 				internal.AddDescriptionToImage(logger, step.Description, imagePath)
 			}
+			clingyData.Steps[idx].ImageOutput = fmt.Sprintf("%s%s", strconv.Itoa(idx), ".jpg")
 		}
 
 		internal.ClearTerminal()
-		fmt.Println("Completed clingy run.")
+		fmt.Println("Completed clingy run, generating report.")
+
+		if err := internal.GenerateHTMLReport(logger, clingyData, fmt.Sprintf("%s/index.html", getOutputPath())); err != nil {
+			fmt.Println("Error in generating report")
+			os.Exit(1)
+		}
 	},
 }

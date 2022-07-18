@@ -6,6 +6,7 @@ type ClingyStep struct {
 	Description string   `yaml:"description"`
 	Command     string   `yaml:"command"`
 	Args        []string `yaml:"args"`
+	ImageOutput string
 }
 
 // ClingyTemplate - a full set of clingy instruction to follow
