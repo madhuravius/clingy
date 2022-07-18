@@ -16,17 +16,18 @@ func CaptureWindow(
 	command string,
 	commandArgs []string,
 	screenshotName string,
+	screenshotExtension string,
 ) string {
 	// typical execution path - magick import -window $WINDOWID ./images/{screenshot}
 	logger.Println("Taking screenshot", fmt.Sprintf("WINDOWID - %s", os.Getenv("WINDOWID")))
-	expectedPath := fmt.Sprintf("%s/%s.jpg", buildDirectory, screenshotName)
+	expectedPath := fmt.Sprintf("%s/%s%s", buildDirectory, screenshotName, screenshotExtension)
 	logger.Println("Saving to path", expectedPath)
 
 	fmt.Println("> ", command, strings.Join(commandArgs, " "))
 	output, _ := exec.Command(command, commandArgs...).CombinedOutput() // always allow the command to possibly error
 	fmt.Println(string(output))
 	logger.Println("Finished executing command", command)
-	time.Sleep(1000 * time.Millisecond) // waiting because the parent terminal process may not have finished rendering
+	time.Sleep(200 * time.Millisecond) // waiting because the parent terminal process may not have finished rendering
 
 	imageCommand := exec.Command(
 		"magick",
