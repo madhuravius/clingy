@@ -1,12 +1,18 @@
 package lib
 
 import (
+	"errors"
+	"log"
 	"os"
 
 	"gopkg.in/yaml.v3"
 )
 
-func ParseClingyFile(fileName string) (*ClingyTemplate, error) {
+var (
+	NoStepsError = errors.New("error: unable to process template, no steps")
+)
+
+func ParseClingyFile(logger *log.Logger, fileName string) (*ClingyTemplate, error) {
 	data, err := os.ReadFile(fileName)
 	if err != nil {
 		return nil, err
@@ -15,6 +21,11 @@ func ParseClingyFile(fileName string) (*ClingyTemplate, error) {
 	var clingyData ClingyTemplate
 	if err = yaml.Unmarshal(data, &clingyData); err != nil {
 		return nil, err
+	}
+
+	if len(clingyData.Steps) == 0 {
+		logger.Println("Error - missing steps to execute in order")
+		return nil, NoStepsError
 	}
 
 	return &clingyData, nil

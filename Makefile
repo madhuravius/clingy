@@ -26,8 +26,8 @@ lint:
 		golangci-lint run
 .PHONY: lint
 
-test: lint
-	go test ./...
+test:
+	go test ./... -cover
 .PHONY: test
 
 pretty:

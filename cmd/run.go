@@ -19,7 +19,7 @@ var runCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.Println("Running clingy")
 
-		clingyData, err := lib.ParseClingyFile(inputFile)
+		clingyData, err := lib.ParseClingyFile(logger, inputFile)
 		if err != nil {
 			fmt.Println(fmt.Sprintf("Error in reading: %s", inputFile), err)
 			os.Exit(1)
