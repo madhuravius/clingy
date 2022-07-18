@@ -1,8 +1,0 @@
-label: "basic flow #1"
-steps:
-  - label: start
-    command: echo "Starting"
-  - label: printing timestamp
-    command: time
-  - label: finish
-    command: echo "Finishing"

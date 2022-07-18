@@ -41,10 +41,10 @@ func initRunWithArtifactDirectoryCreate(_ *cobra.Command, _ []string) {
 
 // initRunWithoutArtifactDirectoryCreate - use this function when not needing a generalized create except with debug
 func initRunWithoutArtifactDirectoryCreate(_ *cobra.Command, _ []string) {
-	logger = internal.InitLogger(getOutputPath(), debug)
 	if debug {
 		internal.InitDestinationDirectory(getOutputPath())
 	}
+	logger = internal.InitLogger(getOutputPath(), debug)
 }
 
 // rootCmd - entrypoint for clingy app

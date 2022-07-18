@@ -30,7 +30,6 @@ func InitLogger(buildPath string, debug bool) *log.Logger {
 		}
 
 		logger = log.New(file, "", log.Ldate|log.Ltime|log.Lshortfile)
-		logger.Println("Starting in debug mode")
 	} else {
 		logger = log.Default()
 		logger.SetOutput(ioutil.Discard)

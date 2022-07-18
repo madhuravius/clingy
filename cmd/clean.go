@@ -16,16 +16,17 @@ var cleanCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.Println("Cleaning clingy generated files")
 
-		subPaths, err := ioutil.ReadDir(getOutputPath())
+		subPaths, err := ioutil.ReadDir(outputPath)
 		if err != nil {
 			logger.Println("Unable to read build directory for cleaning", err)
 			os.Exit(1)
 		}
+
 		for _, subPath := range subPaths {
 			if subPath.Name() == ".gitkeep" {
 				continue
 			}
-			err := os.RemoveAll(path.Join([]string{getOutputPath(), subPath.Name()}...))
+			err := os.RemoveAll(path.Join([]string{outputPath, subPath.Name()}...))
 			if err != nil {
 				logger.Println("Unable to clean up normal build path", err)
 				os.Exit(1)

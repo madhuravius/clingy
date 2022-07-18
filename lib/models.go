@@ -2,9 +2,10 @@ package lib
 
 // ClingyStep - step to execute on
 type ClingyStep struct {
-	Label       string `yaml:"label"`
-	Description string `yaml:"description"`
-	Command     string `yaml:"command"`
+	Label       string   `yaml:"label"`
+	Description string   `yaml:"description"`
+	Command     string   `yaml:"command"`
+	Args        []string `yaml:"args"`
 }
 
 // ClingyTemplate - a full set of clingy instruction to follow

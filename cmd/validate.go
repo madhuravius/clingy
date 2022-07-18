@@ -23,7 +23,7 @@ var validateCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		_, err := lib.ParseClingyFile(inputFile)
+		_, err := lib.ParseClingyFile(logger, inputFile)
 		if err != nil {
 			fmt.Println(fmt.Sprintf("Error in validating: %s", inputFile), err)
 			os.Exit(1)
