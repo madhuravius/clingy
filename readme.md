@@ -13,6 +13,11 @@ Requires the following dependencies for this to even run:
 
 * [imagemagick](https://imagemagick.org/script/download.php)
 
+#### MacOS
+
+__Warning__: On macOS - this also requires you to use [GetWindowID](https://github.com/smokris/GetWindowID) 
+and expects this to be installed.
+
 ### Running in docker
 
 This can be run in docker. Instructions TBD

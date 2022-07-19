@@ -1,27 +1,29 @@
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head><title>Clingy Report - {{.Label}}</title></head>
 <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 <body>
-<hgroup>
-    <h1>
-        Clingy Report - {{.Label}}
-    </h1>
-    <h2>
-        Steps:
-    </h2>
-</hgroup>
-{{range $idx, $step := .Steps}}
-<div>
+<main class="container">
     <hgroup>
-        <h3>
-            #{{$idx}} {{$step.Label}}
-        </h3>
-        <h4>
-            {{$step.Description}}
-        </h4>
+        <h1>
+            Clingy Report - {{.Label}}
+        </h1>
+        <h2>
+            Steps:
+        </h2>
     </hgroup>
-    <img alt="screenshot of {{$step.Label}}" src="{{$step.ImageOutput}}" />
-</div>
-{{end}}
+    {{range $idx, $step := .Steps}}
+    <div>
+        <hgroup>
+            <h3>
+                #{{$idx}} {{$step.Label}}
+            </h3>
+            <h4>
+                {{$step.Description}}
+            </h4>
+        </hgroup>
+        <img alt="screenshot of {{$step.Label}}" src="{{$step.ImageOutput}}" />
+    </div>
+    {{end}}
+</main>
 </body>
 </html>
