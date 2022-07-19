@@ -15,7 +15,7 @@ steps:
   description: starting clingy flow
   command: echo 
   args:
-	- "Starting"`
+    - "Starting"`
 
 // initCmd - inits a .clingy.yaml for use in the current path
 var initCmd = &cobra.Command{

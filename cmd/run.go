@@ -33,21 +33,29 @@ var runCmd = &cobra.Command{
 				args = []string{}
 			}
 			imagePath := internal.CaptureWindow(logger, getOutputPath(), step.Command, args, strconv.Itoa(idx), ".jpg")
-			if step.Label != "" {
-				internal.AddLabelToImage(logger, step.Label, imagePath)
-			}
-			if step.Description != "" {
-				internal.AddDescriptionToImage(logger, step.Description, imagePath)
+
+			if reportStyle == "images-only" {
+				if step.Label != "" {
+					internal.AddLabelToImage(logger, step.Label, imagePath)
+				}
+				if step.Description != "" {
+					internal.AddDescriptionToImage(logger, step.Description, imagePath)
+				}
 			}
 			clingyData.Steps[idx].ImageOutput = fmt.Sprintf("%s%s", strconv.Itoa(idx), ".jpg")
 		}
 
 		internal.ClearTerminal()
-		fmt.Println("Completed clingy run, generating report.")
+		switch reportStyle {
+		case "images-only":
+			fmt.Println("Completed clingy run, generated images.")
+		case "html-simple":
+			fmt.Println("Completed clingy run, generating report.")
 
-		if err := internal.GenerateHTMLReport(logger, clingyData, fmt.Sprintf("%s/index.html", getOutputPath())); err != nil {
-			fmt.Println("Error in generating report")
-			os.Exit(1)
+			if err := internal.GenerateHTMLReport(logger, clingyData, fmt.Sprintf("%s/index.html", getOutputPath())); err != nil {
+				fmt.Println("Error in generating report")
+				os.Exit(1)
+			}
 		}
 	},
 }

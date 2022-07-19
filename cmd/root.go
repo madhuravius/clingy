@@ -26,6 +26,8 @@ var (
 	outputPath = "./output"
 	// inputFile - a path that contains an input file to digest and run clingy against
 	inputFile = "./.clingy.yaml"
+	// reportStyle - output format to share screenshots
+	reportStyle = "html-simple"
 )
 
 // getOutputPath - a string that generates a union of an (dynamic) output path and build number for artifacts
@@ -82,6 +84,7 @@ func init() {
 
 	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "enable debug logs")
 	rootCmd.PersistentFlags().StringVarP(&outputPath, "outputPath", "o", outputPath, "build path that dumps outputs")
-	rootCmd.PersistentFlags().StringVarP(&inputFile, "inputFile", "i", inputFile, "inputFile representing a .clingy.yaml")
+	rootCmd.PersistentFlags().StringVarP(&inputFile, "inputFile", "i", inputFile, "input file representing a .clingy.yaml")
+	rootCmd.PersistentFlags().StringVarP(&reportStyle, "reportStyle", "r", reportStyle, "report style to output to (choices: 'html-simple', 'images-only')")
 	rootCmd.Flags().SortFlags = true
 }
