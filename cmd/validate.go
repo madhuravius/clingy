@@ -6,7 +6,6 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"clingy/internal"
 	"clingy/lib"
 )
 
@@ -18,8 +17,8 @@ var validateCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Printf("Validating %s\n", inputFile)
 
-		if err := internal.CheckMagickBinary(); err != nil {
-			fmt.Println("Error with magick binary", err)
+		if err := lib.ClingyCanRun(); err != nil {
+			fmt.Println(fmt.Sprintf("Error in checking if clingy can run: %s", err.Error()))
 			os.Exit(1)
 		}
 
