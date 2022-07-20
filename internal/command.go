@@ -25,8 +25,8 @@ func ExecuteCommand(logger *log.Logger, command string, commandArgs []string) ([
 	fmt.Println(string(output))
 
 	// wait for element to render before proceeding
-	logger.Println("Finished executing command", command)
-	time.Sleep(200 * time.Millisecond) // waiting because the parent terminal process may not have finished rendering
+	logger.Println("Finished executing command", command, commandArgs)
+	time.Sleep(350 * time.Millisecond) // waiting because the parent terminal process may not have finished rendering
 
 	return output, nil
 }

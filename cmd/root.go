@@ -17,7 +17,7 @@ var (
 	// logger - logger for debugging reasons, init'ed and typically writes to file in output directory w/ build #
 	logger *log.Logger
 	// version - version of the app to spit out, currently manually set :(
-	version = "v0.1.0"
+	version = "v0.3.0"
 
 	// flags
 	// debug - enable verbose logging

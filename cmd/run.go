@@ -35,13 +35,18 @@ var runCmd = &cobra.Command{
 		for idx, step := range clingyData.Steps {
 			// clear terminal for fresh screenshot
 			internal.ClearTerminal()
-			args := step.Args
-			if args == nil {
-				args = []string{}
+			if step.Args == nil {
+				step.Args = []string{}
+			} else {
+				// preprocess args for input via string substitution from prior outputs
+				if err := lib.HydrateArgs(logger, clingyData, idx); err != nil {
+					fmt.Println("Error in using output map in input arguments", err)
+					os.Exit(1)
+				}
 			}
 
 			// execute actual command
-			_, err := internal.ExecuteCommand(logger, step.Command, args)
+			output, err := internal.ExecuteCommand(logger, step.Command, step.Args)
 			if err != nil {
 				logger.Println("Error in executing command", err)
 				os.Exit(1)
@@ -53,6 +58,7 @@ var runCmd = &cobra.Command{
 				logger.Println("Error in capturing image", err)
 				os.Exit(1)
 			}
+			clingyData.Steps[idx].ImageOutput = fmt.Sprintf("%s%s", strconv.Itoa(idx), ".jpg")
 
 			// if image-only report, add labels/descriptions to the image itself
 			if reportStyle == "images-only" {
@@ -69,7 +75,16 @@ var runCmd = &cobra.Command{
 					}
 				}
 			}
-			clingyData.Steps[idx].ImageOutput = fmt.Sprintf("%s%s", strconv.Itoa(idx), ".jpg")
+
+			// if output key, process output and store it for future use
+			if step.OutputProcessing != nil {
+				fmt.Println(fmt.Sprintf("Output processing found for key %s", step.OutputProcessing.Key))
+				if err := lib.HydrateOutput(logger, string(output), clingyData, idx); err != nil {
+					fmt.Println("Error in capturing output in processing", err)
+					os.Exit(1)
+				}
+				logger.Println(fmt.Sprintf("Finished processing output: %s", output))
+			}
 		}
 
 		internal.ClearTerminal()

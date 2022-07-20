@@ -10,6 +10,7 @@ import (
 )
 
 var (
+	// NoStepsError ...
 	NoStepsError = errors.New("error: unable to process template, no steps")
 )
 
@@ -34,6 +35,7 @@ func ClingyCanRun() error {
 	return nil
 }
 
+// ParseClingyFile - unmarshal a target filename to a clingy template pointer for reuse
 func ParseClingyFile(logger *log.Logger, fileName string) (*ClingyTemplate, error) {
 	data, err := os.ReadFile(fileName)
 	if err != nil {
