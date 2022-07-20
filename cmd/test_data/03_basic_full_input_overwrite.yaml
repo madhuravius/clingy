@@ -1,0 +1,34 @@
+label: "basic flow #1"
+steps:
+  - label: start
+    command: echo
+    args:
+      - Starting
+  - label: saving input
+    command: echo
+    args:
+      - sample-input-value
+    output_processing:
+      key: sample_input_key
+      matching_type: full
+  - label: saving input again
+    command: echo
+    args:
+      - sample-input-value-overwritten
+    output_processing:
+      key: sample_input_key
+      matching_type: full
+  - label: waiting
+    command: sleep
+    args:
+      - 1
+  - label: printing timestamp
+    command: date
+  - label: using output
+    command: echo
+    args:
+      - $[[sample_input_key]]
+  - label: finish
+    command: echo
+    args:
+      - Finishing

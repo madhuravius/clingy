@@ -11,7 +11,7 @@ import (
 func InitDestinationDirectory(buildPath string) {
 	err := os.MkdirAll(buildPath, 0755)
 	if err != nil {
-		log.Println("Error setting up the build", err)
+		fmt.Println("Error setting up the build", err)
 		os.Exit(1)
 	}
 }
