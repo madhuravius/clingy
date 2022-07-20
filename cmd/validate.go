@@ -27,7 +27,7 @@ func (r *RootConfig) newValidateCmd() *cobra.Command {
 				r.ExitTools.Exit(1)
 			}
 
-			fmt.Println("Completed validation, looks good!")
+			cmd.Println("Completed validation, looks good!")
 			r.ExitTools.Exit(0)
 		},
 	}

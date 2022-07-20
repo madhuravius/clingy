@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -13,7 +11,7 @@ func (r *RootConfig) newVersionCmd() *cobra.Command {
 		Short:  "Print the version number of clingy",
 		PreRun: initRunWithoutArtifactDirectoryCreate,
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(version)
+			cmd.Println(version)
 		},
 	}
 }
