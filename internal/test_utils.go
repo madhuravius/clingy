@@ -29,10 +29,10 @@ func GenerateMockInterfacesForClingy(t *testing.T) *TestInterfaceHousing {
 }
 
 // ExecCobraCmdAndReturnString - executes a cobra command, stores it in buffer, and returns it back out
-func ExecCobraCmdAndReturnString(t *testing.T, cmd *cobra.Command) string {
+func ExecCobraCmdAndReturnString(t *testing.T, cmd *cobra.Command, args []string) string {
 	b := bytes.NewBufferString("")
 	cmd.SetOut(b)
-	cmd.SetArgs([]string{})
+	cmd.SetArgs(args)
 	if err := cmd.Execute(); err != nil {
 		t.Fatal(err)
 	}
