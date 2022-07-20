@@ -21,7 +21,7 @@ func ExecuteCommand(logger *log.Logger, command string, commandArgs []string) ([
 	// ignore error as it gets captured
 	output, _ := exec.Command(command, commandArgs...).CombinedOutput() // always allow the command to possibly error
 
-	// echo stringified output (apparently autocolorizes)
+	// echo stringified output (apparently auto-colorizes)
 	fmt.Println(string(output))
 
 	// wait for element to render before proceeding

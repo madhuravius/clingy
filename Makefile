@@ -1,5 +1,6 @@
 init:
 	go mod download
+	go generate ./...
 .PHONY: init
 
 build:
@@ -16,6 +17,7 @@ start:
 clean:
 	rm build/clingy || true
 	go run *.go clean
+	go mod tidy
 .PHONY: clean
 
 lint:
