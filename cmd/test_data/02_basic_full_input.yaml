@@ -4,6 +4,10 @@ steps:
     command: echo
     args:
       - Starting
+  - label: saving input
+    command: echo
+    args:
+      - sample-input-value
     output_processing:
       key: sample_input_key
       matching_type: full

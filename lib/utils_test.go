@@ -21,7 +21,7 @@ func TestParseClingyFile(t *testing.T) {
 			name: "test expected failure on 00_will_fail.yaml",
 			args: args{
 				logger:   log.Default(),
-				fileName: "test_data/00_will_fail.yaml",
+				fileName: "../cmd/test_data/00_will_fail.yaml",
 			},
 			wantErr:        true,
 			wantErrPartial: "unable to process template, no steps",
@@ -30,7 +30,7 @@ func TestParseClingyFile(t *testing.T) {
 			name: "test pass case on 01_basic_flow.yaml",
 			args: args{
 				logger:   log.Default(),
-				fileName: "test_data/01_basic_flow.yaml",
+				fileName: "../cmd/test_data/01_basic_flow.yaml",
 			},
 			wantErr:        false,
 			wantErrPartial: "",

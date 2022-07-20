@@ -23,14 +23,14 @@ var (
 
 var (
 	// RegexMatchingInput - a regex specifically to target inputs (see HydrateArgs)
-	RegexMatchingInput = regexp.MustCompile(`\$\[\[.*?]]`)
+	RegexMatchingInput = regexp.MustCompile(`\$\[\[([^]]+)\]`)
 )
 
 // MatchingArgs - specific wildcard matches for an assorted set of possible uses
 type MatchingArgs struct {
 	// Regex-related values
-	// Regexp - raw regex string to use in regexp library
-	Regexp string `yaml:"regexp"`
+	// Regex - raw regex string to use in regexp library
+	Regex string `yaml:"regex"`
 
 	// Positional-related values
 	// PositionalDelimiter - a value to delimit a string on

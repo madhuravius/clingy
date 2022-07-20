@@ -14,7 +14,8 @@ start:
 .PHONY: start
 
 clean:
-	rm build/clingy
+	rm build/clingy || true
+	go run *.go clean
 .PHONY: clean
 
 lint:
