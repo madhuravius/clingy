@@ -30,7 +30,7 @@ lint:
 .PHONY: lint
 
 test:
-	go test ./... -cover
+	go test ./... -v -cover
 .PHONY: test
 
 pretty:

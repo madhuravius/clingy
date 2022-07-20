@@ -20,7 +20,7 @@ func (r *RootConfig) newCleanCmd() *cobra.Command {
 			subPaths, err := ioutil.ReadDir(outputPath)
 			if err != nil {
 				logger.Println("Unable to read build directory for cleaning", err)
-				os.Exit(1)
+				r.ExitTools.Exit(1)
 			}
 
 			for _, subPath := range subPaths {
@@ -30,7 +30,7 @@ func (r *RootConfig) newCleanCmd() *cobra.Command {
 				err := os.RemoveAll(path.Join([]string{outputPath, subPath.Name()}...))
 				if err != nil {
 					logger.Println("Unable to clean up normal build path", err)
-					os.Exit(1)
+					r.ExitTools.Exit(1)
 				}
 			}
 		},

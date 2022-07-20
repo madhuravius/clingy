@@ -2,8 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
-
 	"github.com/spf13/cobra"
 
 	"clingy/lib"
@@ -20,17 +18,17 @@ func (r *RootConfig) newValidateCmd() *cobra.Command {
 
 			if err := lib.ClingyCanRun(); err != nil {
 				fmt.Println(fmt.Sprintf("Error in checking if clingy can run: %s", err.Error()))
-				os.Exit(1)
+				r.ExitTools.Exit(1)
 			}
 
 			_, err := lib.ParseClingyFile(logger, inputFile)
 			if err != nil {
 				fmt.Println(fmt.Sprintf("Error in validating: %s", inputFile), err)
-				os.Exit(1)
+				r.ExitTools.Exit(1)
 			}
 
 			fmt.Println("Completed validation, looks good!")
-			os.Exit(0)
+			r.ExitTools.Exit(0)
 		},
 	}
 }

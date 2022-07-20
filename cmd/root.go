@@ -3,7 +3,6 @@ package cmd
 import (
 	"fmt"
 	"log"
-	"os"
 	"strconv"
 	"time"
 
@@ -32,7 +31,8 @@ var (
 
 // RootConfig - variables to pass in for reuse and testing
 type RootConfig struct {
-	Magick internal.MagickClientImpl
+	ExitTools internal.ExitToolsImpl
+	Magick    internal.MagickClientImpl
 }
 
 // getOutputPath - a string that generates a union of an (dynamic) output path and build number for artifacts
@@ -65,9 +65,8 @@ func RootCmd(c *RootConfig) *cobra.Command {
 			if len(args) == 0 {
 				if err := cmd.Help(); err != nil {
 					logger.Println("Error when trying to print help.", err)
-					os.Exit(1)
+					panic(err)
 				}
-				os.Exit(0)
 			}
 		},
 	}
@@ -89,10 +88,12 @@ func RootCmd(c *RootConfig) *cobra.Command {
 
 // Execute ...
 func Execute() {
-	if err := RootCmd(&RootConfig{
-		Magick: internal.NewMagickClient(),
-	}).Execute(); err != nil {
+	rootConfig := &RootConfig{
+		ExitTools: internal.NewExitToolsClient(),
+		Magick:    internal.NewMagickClient(),
+	}
+	if err := RootCmd(rootConfig).Execute(); err != nil {
 		logger.Println("Error when trying to execute", err)
-		os.Exit(1)
+		rootConfig.ExitTools.Exit(1)
 	}
 }

@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"strconv"
 
 	"github.com/spf13/cobra"
@@ -23,13 +22,13 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 			if err := lib.ClingyCanRun(); err != nil {
 				logger.Println("Unable to run clingy due to error in startup", err)
 				fmt.Println(fmt.Sprintf("Clingy cannot run for reason: %s", err.Error()))
-				os.Exit(1)
+				r.ExitTools.Exit(1)
 			}
 
 			clingyData, err := lib.ParseClingyFile(logger, inputFile)
 			if err != nil {
 				fmt.Println(fmt.Sprintf("Error in reading: %s", inputFile), err)
-				os.Exit(1)
+				r.ExitTools.Exit(1)
 			}
 			fmt.Printf("Running: %s", clingyData.Label)
 
@@ -42,7 +41,7 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 					// preprocess args for input via string substitution from prior outputs
 					if err := lib.HydrateArgs(logger, clingyData, idx); err != nil {
 						fmt.Println("Error in using output map in input arguments", err)
-						os.Exit(1)
+						r.ExitTools.Exit(1)
 					}
 				}
 
@@ -50,14 +49,14 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 				output, err := internal.ExecuteCommand(logger, step.Command, step.Args)
 				if err != nil {
 					logger.Println("Error in executing command", err)
-					os.Exit(1)
+					r.ExitTools.Exit(1)
 				}
 
 				// capture window before proceeding
 				imagePath, err := r.Magick.CaptureWindow(logger, getOutputPath(), strconv.Itoa(idx), ".jpg")
 				if err != nil {
 					logger.Println("Error in capturing image", err)
-					os.Exit(1)
+					r.ExitTools.Exit(1)
 				}
 				clingyData.Steps[idx].ImageOutput = fmt.Sprintf("%s%s", strconv.Itoa(idx), ".jpg")
 
@@ -66,13 +65,13 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 					if step.Label != "" {
 						if err := r.Magick.AddLabelToImage(logger, step.Label, imagePath); err != nil {
 							logger.Println("Error in adding label to image", err)
-							os.Exit(1)
+							r.ExitTools.Exit(1)
 						}
 					}
 					if step.Description != "" {
 						if err := r.Magick.AddDescriptionToImage(logger, step.Description, imagePath); err != nil {
 							logger.Println("Error in adding description to image", err)
-							os.Exit(1)
+							r.ExitTools.Exit(1)
 						}
 					}
 				}
@@ -82,7 +81,7 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 					fmt.Println(fmt.Sprintf("Output processing found for key %s", step.OutputProcessing.Key))
 					if err := lib.HydrateOutput(logger, string(output), clingyData, idx); err != nil {
 						fmt.Println("Error in capturing output in processing", err)
-						os.Exit(1)
+						r.ExitTools.Exit(1)
 					}
 					logger.Println(fmt.Sprintf("Finished processing output: %s", output))
 				}
@@ -98,7 +97,7 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 				reportPath := fmt.Sprintf("%s/index.html", getOutputPath())
 				if err := internal.GenerateHTMLReport(logger, clingyData, reportPath); err != nil {
 					fmt.Println("Error in generating report")
-					os.Exit(1)
+					r.ExitTools.Exit(1)
 				}
 				fmt.Println(fmt.Sprintf("Generated report: %s", reportPath))
 			}

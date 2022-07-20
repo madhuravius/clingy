@@ -11,6 +11,41 @@ import (
 	gomock "github.com/golang/mock/gomock"
 )
 
+// MockExitToolsImpl is a mock of ExitToolsImpl interface.
+type MockExitToolsImpl struct {
+	ctrl     *gomock.Controller
+	recorder *MockExitToolsImplMockRecorder
+}
+
+// MockExitToolsImplMockRecorder is the mock recorder for MockExitToolsImpl.
+type MockExitToolsImplMockRecorder struct {
+	mock *MockExitToolsImpl
+}
+
+// NewMockExitToolsImpl creates a new mock instance.
+func NewMockExitToolsImpl(ctrl *gomock.Controller) *MockExitToolsImpl {
+	mock := &MockExitToolsImpl{ctrl: ctrl}
+	mock.recorder = &MockExitToolsImplMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockExitToolsImpl) EXPECT() *MockExitToolsImplMockRecorder {
+	return m.recorder
+}
+
+// Exit mocks base method.
+func (m *MockExitToolsImpl) Exit(code int) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "Exit", code)
+}
+
+// Exit indicates an expected call of Exit.
+func (mr *MockExitToolsImplMockRecorder) Exit(code interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Exit", reflect.TypeOf((*MockExitToolsImpl)(nil).Exit), code)
+}
+
 // MockMagickClientImpl is a mock of MagickClientImpl interface.
 type MockMagickClientImpl struct {
 	ctrl     *gomock.Controller
