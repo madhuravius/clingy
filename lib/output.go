@@ -10,38 +10,40 @@ import (
 
 // HydrateArgs - change args by reference with interpolated values expected from map, optionally error
 func HydrateArgs(logger *log.Logger, clingyData *ClingyTemplate, step int) error {
-	logger.Println(fmt.Sprintf("Hydrating output (step %d) and args", step), clingyData.Steps[step].Args)
+	logger.Printf("Hydrating output (step %d) and args: %s", step, clingyData.Steps[step].Args)
 	for argIdx, arg := range clingyData.Steps[step].Args {
 		if RegexMatchingInput.MatchString(arg) {
 			logger.Println("Arg match found", arg)
 			rawOutputKeyToMatch := RegexMatchingInput.FindStringSubmatch(arg)
 			if rawOutputKeyToMatch == nil {
-				return errors.New(fmt.Sprintf(
+				return fmt.Errorf(
 					"in hydrating inputs for step, output anticipated key %s, but not found in outputs!",
-					rawOutputKeyToMatch))
+					rawOutputKeyToMatch,
+				)
 			}
 			if output, ok := clingyData.StepOutputs[rawOutputKeyToMatch[1]]; !ok {
-				return errors.New(fmt.Sprintf(
+				return fmt.Errorf(
 					"in hydrating inputs for step, output anticipated key %s, but not found in outputs!",
-					rawOutputKeyToMatch[1]))
+					rawOutputKeyToMatch[1],
+				)
 			} else {
 				clingyData.Steps[step].Args[argIdx] = output
 			}
 		}
 	}
-	logger.Println(fmt.Sprintf("Hydrated output (step %d)", step))
+	logger.Printf("Hydrated output (step %d)", step)
 	return nil
 }
 
 // HydrateOutput - store output for future consumption
 func HydrateOutput(logger *log.Logger, output string, clingyData *ClingyTemplate, step int) error {
 	outputArgs := clingyData.Steps[step].OutputProcessing
-	logger.Println(fmt.Sprintf(
+	logger.Printf(
 		"Starting to hydrate output (step %d) for %s's clingyData on key: %s",
 		step,
 		clingyData.Label,
 		outputArgs.Key,
-	))
+	)
 
 	var value string
 	switch outputArgs.MatchingType {

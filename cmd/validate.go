@@ -17,13 +17,13 @@ func (r *RootConfig) newValidateCmd() *cobra.Command {
 			fmt.Printf("Validating %s\n", inputFile)
 
 			if err := lib.ClingyCanRun(); err != nil {
-				fmt.Println(fmt.Sprintf("Error in checking if clingy can run: %s", err.Error()))
+				fmt.Printf("Error in checking if clingy can run: %s\n", err.Error())
 				r.ExitTools.Exit(1)
 			}
 
 			_, err := lib.ParseClingyFile(logger, inputFile)
 			if err != nil {
-				fmt.Println(fmt.Sprintf("Error in validating: %s", inputFile), err)
+				fmt.Printf("Error in validating: %s %s", inputFile, err.Error())
 				r.ExitTools.Exit(1)
 			}
 

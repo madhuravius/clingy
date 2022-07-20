@@ -21,13 +21,13 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 
 			if err := lib.ClingyCanRun(); err != nil {
 				logger.Println("Unable to run clingy due to error in startup", err)
-				fmt.Println(fmt.Sprintf("Clingy cannot run for reason: %s", err.Error()))
+				fmt.Printf("Clingy cannot run for reason: %s\n", err.Error())
 				r.ExitTools.Exit(1)
 			}
 
 			clingyData, err := lib.ParseClingyFile(logger, inputFile)
 			if err != nil {
-				fmt.Println(fmt.Sprintf("Error in reading: %s", inputFile), err)
+				fmt.Printf("Error in reading: %s %s\n", inputFile, err.Error())
 				r.ExitTools.Exit(1)
 			}
 			fmt.Printf("Running: %s", clingyData.Label)
@@ -78,19 +78,19 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 
 				// if output key, process output and store it for future use
 				if step.OutputProcessing != nil {
-					fmt.Println(fmt.Sprintf("Output processing found for key %s", step.OutputProcessing.Key))
+					fmt.Printf("Output processing found for key %s\n", step.OutputProcessing.Key)
 					if err := lib.HydrateOutput(logger, string(output), clingyData, idx); err != nil {
 						fmt.Println("Error in capturing output in processing", err)
 						r.ExitTools.Exit(1)
 					}
-					logger.Println(fmt.Sprintf("Finished processing output: %s", output))
+					logger.Printf("Finished processing output: %s", output)
 				}
 			}
 
 			internal.ClearTerminal()
 			switch reportStyle {
 			case "images-only":
-				fmt.Println(fmt.Sprintf("Completed clingy run, generated images at %s.", getOutputPath()))
+				fmt.Printf("Completed clingy run, generated images at %s.", getOutputPath())
 			case "html-simple":
 				fmt.Println("Completed clingy run, generating report.")
 
@@ -99,7 +99,7 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 					fmt.Println("Error in generating report")
 					r.ExitTools.Exit(1)
 				}
-				fmt.Println(fmt.Sprintf("Generated report: %s", reportPath))
+				fmt.Printf("Generated report: %s\n", reportPath)
 			}
 		},
 	}
