@@ -1,5 +1,4 @@
 name: Go Releaser
-# Source: https://github.com/tchupp/actions-update-semver-tags
 
 on:
   release:

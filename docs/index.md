@@ -12,11 +12,43 @@ This CLI utility helps you automate and test other CLIs.
 
 Releases can be found on this page for download: [Releases Github Page](https://github.com/madhuravius/clingy/releases/)
 
+### Linux
+
+You will need the following installed:
+
+* [imagemagick](https://imagemagick.org/script/download.php) 
+
+You can then download the binary above to proceed by placing it in your `PATH`.
+
+### MacOS
+
+You will need the following installed:
+
+* [imagemagick](https://imagemagick.org/script/download.php)
+* [the python library screenshot](https://pypi.org/project/screenshot/)
+
+After these are installed, ensure that `screenshot` has permissions for capturing your screen.
+You can then download the binary above to proceed by placing it in your `PATH`.
+
+### Windows
+
+Currently unsupported.
+
 ## Basic Usage
+
+
+{==
+
+__Warning for MacOS users__: For now, you will want to set the environment variable `WINDOW_NAME` 
+to whichever application name you are using to execute your commands. For example, if you use 
+[iTerm]() or [alacritty](), you will want to set your `export WINDOW_NAME=iTerm` or `export WINDOW_NAME=alacritty` for clingy to know which application to target for screenshots.
+
+==}
 
 See [this link](/01_yaml/) for details on how to structure the clingy YAML files.
 
 ```sh
+# MacOS - See above warning and instruction about WINDOW_NAME
 # creates a .clingy.yaml file
 clingy init
 
