@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"clingy/internal"
+	"clingy/internal/images"
 	"github.com/spf13/cobra"
 )
 
@@ -31,8 +32,8 @@ var (
 
 // RootConfig - variables to pass in for reuse and testing
 type RootConfig struct {
-	ExitTools internal.ExitToolsImpl
-	Magick    internal.MagickClientImpl
+	ExitTools  internal.ExitToolsImpl
+	ImageTools images.ImageProcessingImpl
 }
 
 // getOutputPath - a string that generates a union of an (dynamic) output path and build number for artifacts
@@ -89,8 +90,8 @@ func RootCmd(c *RootConfig) *cobra.Command {
 // Execute ...
 func Execute() {
 	rootConfig := &RootConfig{
-		ExitTools: internal.NewExitToolsClient(),
-		Magick:    internal.NewMagickClient(),
+		ExitTools:  internal.NewExitToolsClient(),
+		ImageTools: images.NewMagickClient(),
 	}
 	if err := RootCmd(rootConfig).Execute(); err != nil {
 		logger.Println("Error when trying to execute", err)

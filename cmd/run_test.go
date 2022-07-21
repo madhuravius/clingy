@@ -16,7 +16,7 @@ func TestRunCmdExecuteSuccess(t *testing.T) {
 	mockTools := internal.GenerateMockInterfacesForClingy(t)
 	defer mockTools.Ctrl.Finish()
 
-	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, Magick: mockTools.MagickClientImpl})
+	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, ImageTools: mockTools.MagickClientImpl})
 	mockTools.MagickClientImpl.EXPECT().CaptureWindow(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).AnyTimes()
 	files, err := os.ReadDir("./test_data")
 	if err != nil {
@@ -34,7 +34,7 @@ func TestRunCmdHelpSuccess(t *testing.T) {
 	mockTools := internal.GenerateMockInterfacesForClingy(t)
 	defer mockTools.Ctrl.Finish()
 
-	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, Magick: mockTools.MagickClientImpl})
+	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, ImageTools: mockTools.MagickClientImpl})
 	output := internal.ExecCobraCmdAndReturnString(t, cmd, []string{"run", "--help"})
 	assert.Contains(t, output, "Run clingy")
 }

@@ -14,7 +14,7 @@ import (
 type TestInterfaceHousing struct {
 	Ctrl             *gomock.Controller
 	ExitClientsImpl  *mock.MockExitToolsImpl
-	MagickClientImpl *mock.MockMagickClientImpl
+	MagickClientImpl *mock.MockImageProcessingImpl
 }
 
 // GenerateMockInterfacesForClingy - generates an easy to use struct with helper methods for testing
@@ -24,7 +24,7 @@ func GenerateMockInterfacesForClingy(t *testing.T) *TestInterfaceHousing {
 	return &TestInterfaceHousing{
 		Ctrl:             ctrl,
 		ExitClientsImpl:  mock.NewMockExitToolsImpl(ctrl),
-		MagickClientImpl: mock.NewMockMagickClientImpl(ctrl),
+		MagickClientImpl: mock.NewMockImageProcessingImpl(ctrl),
 	}
 }
 

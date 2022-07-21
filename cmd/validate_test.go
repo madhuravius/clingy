@@ -15,7 +15,7 @@ func TestValidateCmdExecuteSuccess(t *testing.T) {
 
 	mockTools.ExitClientsImpl.EXPECT().Exit(gomock.Any())
 
-	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, Magick: mockTools.MagickClientImpl})
+	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, ImageTools: mockTools.MagickClientImpl})
 	output := internal.ExecCobraCmdAndReturnString(t, cmd, []string{"validate", "-i", "./test_data/01_basic_flow_will_pass.yaml"})
 	assert.Contains(t, output, "Completed validation, looks good!")
 }
@@ -24,7 +24,7 @@ func TestValidateCmdHelpSuccess(t *testing.T) {
 	mockTools := internal.GenerateMockInterfacesForClingy(t)
 	defer mockTools.Ctrl.Finish()
 
-	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, Magick: mockTools.MagickClientImpl})
+	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, ImageTools: mockTools.MagickClientImpl})
 	output := internal.ExecCobraCmdAndReturnString(t, cmd, []string{"validate", "--help"})
 	assert.Contains(t, output, "Validate a clingy.yml file\n\nUsage:")
 }

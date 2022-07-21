@@ -13,14 +13,22 @@ Supported platforms:
 
 ### Running natively
 
-Requires the following dependencies for this to even run:
+#### Linux
+
+Requires the following dependencies for this to run:
 
 * [imagemagick](https://imagemagick.org/script/download.php)
 
 #### MacOS
 
-__Warning__: On macOS - this also requires you to use [GetWindowID](https://github.com/smokris/GetWindowID) 
-and expects this to be installed.
+Requires the following dependencies to run:
+
+* [Python3](https://www.python.org/downloads/macos/) and [screenshot library](https://pypi.org/project/screenshot/)
+* [imagemagick](https://imagemagick.org/script/download.php)
+
+#### Windows
+
+TBD
 
 ### Running in docker
 
