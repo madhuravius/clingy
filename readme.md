@@ -1,5 +1,9 @@
 # clingy
 
+[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/madhuravius/clingy/)
+
+[![Test](https://github.com/madhuravius/clingy/actions/workflows/test.yaml/badge.svg)](https://github.com/madhuravius/clingy/actions/workflows/test.yaml)
+
 A CLI that helps you test other CLIs with end-to-end testing by capturing screenshots of commands in sequence,
 so you don't have to.
 
