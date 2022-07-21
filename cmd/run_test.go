@@ -2,11 +2,11 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/golang/mock/gomock"
 	"os"
 	"strings"
 	"testing"
 
+	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 
 	"clingy/internal"
