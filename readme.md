@@ -1,6 +1,6 @@
 # clingy
 
-[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/madhuravius/clingy/)
+[![GitHub release](https://img.shields.io/github/release/madhuravius/clingy)](https://github.com/madhuravius/clingy/)
 
 [![Test](https://github.com/madhuravius/clingy/actions/workflows/test.yaml/badge.svg)](https://github.com/madhuravius/clingy/actions/workflows/test.yaml)
 
