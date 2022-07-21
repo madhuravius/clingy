@@ -14,6 +14,8 @@ Releases can be found on this page for download: [Releases Github Page](https://
 
 ## Basic Usage
 
+See [this link](/01_yaml/) for details on how to structure the clingy YAML files.
+
 ```sh
 # creates a .clingy.yaml file
 clingy init

@@ -11,6 +11,7 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version: '>=1.18.0'
-      - run: go test ./... -v -cover
+      - run: go install gotest.tools/gotestsum@latest
+      - run: gotestsum --format testname -- -coverprofile=cover.out ./...
         env:
           WINDOWID: 0000001

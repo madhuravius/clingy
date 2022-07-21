@@ -7,13 +7,16 @@
 A CLI that helps you test other CLIs with end-to-end testing by capturing screenshots of commands in sequence,
 so you don't have to.
 
-See docs here: 
+See docs here: TBD
 
 Supported platforms:
 
 * Linux
+* Mac
 
-## Requirements
+## Requirements and Installation
+
+For installation instructions, please see this doc for guidance: TBD
 
 ### Running natively
 
@@ -30,6 +33,8 @@ Requires the following dependencies to run:
 * [Python3](https://www.python.org/downloads/macos/) and [screenshot library](https://pypi.org/project/screenshot/)
 * [imagemagick](https://imagemagick.org/script/download.php)
 
+These must both be present in your path to function.
+
 #### Windows
 
 TBD
@@ -40,5 +45,5 @@ This can be run in docker. Instructions TBD
 
 ## Misc / Credit
 
-Note - large parts of the organization and structure of this repo were pulled from
-[this other repo](https://github.com/aptible/cloud-cli/).
+Credit - I was inspired from the Makefile and initial structuring of
+[this other repo](https://github.com/aptible/cloud-cli/) when propping up this repository.

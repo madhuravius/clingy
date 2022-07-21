@@ -1,16 +1,20 @@
 label: "basic flow #1"
 steps:
   - label: start
+    description: starting the example flow
     command: echo
     args:
       - Starting
   - label: waiting
     command: sleep
+    description: sleeping for 1 second
     args:
       - 1
   - label: printing timestamp
+    description: printing the date
     command: date
   - label: finish
     command: echo
+    description: finishing the example flow
     args:
       - Finishing
