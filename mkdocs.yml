@@ -1,0 +1,17 @@
+markdown_extensions:
+  - meta
+  - toc:
+      permalink: true
+plugins:
+  - search
+  - tags
+repo_url: https://github.com/madhuravius/clingy
+site_name: clingy
+theme:
+  features:
+    - toc.integrate
+  icon:
+    repo: fontawesome/brands/git-alt
+  name: material
+  palette:
+    primary: deep purple

@@ -1,13 +1,13 @@
 # clingy
 
 [![GitHub release](https://img.shields.io/github/release/madhuravius/clingy)](https://github.com/madhuravius/clingy/)
-
 [![Test](https://github.com/madhuravius/clingy/actions/workflows/test.yaml/badge.svg)](https://github.com/madhuravius/clingy/actions/workflows/test.yaml)
+[![license](https://img.shields.io/github/license/madhuravius/clingy.svg)](https://github.com/madhuravius/clingy/blob/main/LICENSE)
 
 A CLI that helps you test other CLIs with end-to-end testing by capturing screenshots of commands in sequence,
 so you don't have to.
 
-Currently, this takes screenshots of a window running with imagemagick, and as a result will require X11 running.
+See docs here: 
 
 Supported platforms:
 
