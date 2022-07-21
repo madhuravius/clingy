@@ -12,3 +12,5 @@ jobs:
         with:
           go-version: '>=1.18.0'
       - run: go test ./... -v -cover
+        env:
+          WINDOWID: 0000001
