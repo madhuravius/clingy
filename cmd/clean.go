@@ -33,6 +33,7 @@ func (r *RootConfig) newCleanCmd() *cobra.Command {
 					r.ExitTools.Exit(1)
 				}
 			}
+			cmd.Println("Finished cleaning build paths.")
 		},
 	}
 }

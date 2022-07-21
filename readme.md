@@ -5,6 +5,10 @@ so you don't have to.
 
 Currently, this takes screenshots of a window running with imagemagick, and as a result will require X11 running.
 
+Supported platforms:
+
+* Linux
+
 ## Requirements
 
 ### Running natively

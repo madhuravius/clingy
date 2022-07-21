@@ -40,7 +40,7 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 				} else {
 					// preprocess args for input via string substitution from prior outputs
 					if err := lib.HydrateArgs(logger, clingyData, idx); err != nil {
-						fmt.Println("Error in using output map in input arguments", err)
+						cmd.Println("Error in using output map in input arguments", err)
 						r.ExitTools.Exit(1)
 					}
 				}
@@ -80,7 +80,7 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 				if step.OutputProcessing != nil {
 					fmt.Printf("Output processing found for key %s\n", step.OutputProcessing.Key)
 					if err := lib.HydrateOutput(logger, string(output), clingyData, idx); err != nil {
-						fmt.Println("Error in capturing output in processing", err)
+						cmd.Println("Error in capturing output in processing", err)
 						r.ExitTools.Exit(1)
 					}
 					logger.Printf("Finished processing output: %s", output)
@@ -92,11 +92,11 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 			case "images-only":
 				fmt.Printf("Completed clingy run, generated images at %s.", getOutputPath())
 			case "html-simple":
-				fmt.Println("Completed clingy run, generating report.")
+				cmd.Println("Completed clingy run, generating report.")
 
 				reportPath := fmt.Sprintf("%s/index.html", getOutputPath())
 				if err := internal.GenerateHTMLReport(logger, clingyData, reportPath); err != nil {
-					fmt.Println("Error in generating report")
+					cmd.Println("Error in generating report")
 					r.ExitTools.Exit(1)
 				}
 				fmt.Printf("Generated report: %s\n", reportPath)
