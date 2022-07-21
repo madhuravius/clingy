@@ -20,7 +20,7 @@ steps:
 func (r *RootConfig) newInitCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:    "init",
-		Short:  "instantiate a .clingy.yaml for use in the cwd",
+		Short:  "instantiate a .clingy.yaml (or input name of your choice) to pwd",
 		PreRun: initRunWithoutArtifactDirectoryCreate,
 		Run: func(cmd *cobra.Command, args []string) {
 			// check current path to determine if needing to write file
@@ -36,13 +36,13 @@ func (r *RootConfig) newInitCmd() *cobra.Command {
 				cmd.Println("File already exists!")
 				r.ExitTools.Exit(1)
 			}
-
 			// if it doesn't exist, go ahead and write the default template
 			if err := os.WriteFile(inputFile, []byte(templateFile), 0644); err != nil {
 				logger.Println("Error in writing file", err)
 				cmd.Println("Error in trying to write template file")
 				r.ExitTools.Exit(1)
 			}
+			cmd.Printf("Finished writing template to: %s.", inputFile)
 		},
 	}
 
