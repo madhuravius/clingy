@@ -7,6 +7,13 @@ By default, `clingy init` will place a `.clingy.yaml` file in your present worki
 * `label` - a label to label the entire clingy workflow
 * `description` - provide a description for the clingy workflow
 
+```yaml
+label: sample label
+description: sample description
+```
+
+Gets set on the top level with the above, like [this example](/clingy/example-outputs/html-simple).
+
 ## Environment variables
 
 If you have environment variables you wish to pass into the YAML, you can do so with the following
