@@ -1,10 +1,13 @@
 package lib
 
 import (
+	"clingy/internal/images"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
+	"runtime"
 
 	"gopkg.in/yaml.v3"
 )
@@ -22,14 +25,48 @@ func CheckMagickBinary() error {
 	return nil
 }
 
+func CheckScreenshotBinary() error {
+	if _, err := exec.LookPath("screenshot"); os.IsNotExist(err) {
+		return errors.New("error: screenshot python3 bin not found")
+	}
+	return nil
+}
+
+func GetClingyImageCapture() images.ImageProcessingImpl {
+	switch runtime.GOOS {
+	case "darwin":
+		return images.NewMacScreenshotClient()
+	case "linux":
+		return images.NewMagickClient()
+	default:
+		fmt.Println("WARNING - Operating system not supported, trying to use imagemagick client.")
+		return images.NewMagickClient()
+	}
+}
+
 // ClingyCanRun - catch-all for ensuring clingy can actually run
 func ClingyCanRun() error {
 	if err := CheckMagickBinary(); err != nil {
 		return err
 	}
 
-	if os.Getenv("WINDOWID") == "" {
-		return errors.New("environment variable WINDOWID required to proceed")
+	switch runtime.GOOS {
+	case "darwin":
+		if err := CheckScreenshotBinary(); err != nil {
+			return err
+		}
+		if os.Getenv("WINDOW_NAME") == "" {
+			return errors.New("environment variable WINDOW_NAME required to proceed")
+		}
+	case "linux":
+		if os.Getenv("WINDOWID") == "" {
+			return errors.New("environment variable WINDOWID required to proceed")
+		}
+	default:
+		fmt.Println("Warning, running on an unsupported OS")
+		if os.Getenv("WINDOWID") == "" {
+			return errors.New("environment variable WINDOWID required to proceed")
+		}
 	}
 
 	return nil

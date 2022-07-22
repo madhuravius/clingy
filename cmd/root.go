@@ -7,6 +7,8 @@ import (
 	"time"
 
 	"clingy/internal"
+	"clingy/internal/images"
+	"clingy/lib"
 	"github.com/spf13/cobra"
 )
 
@@ -16,11 +18,13 @@ var (
 	// logger - logger for debugging reasons, init'ed and typically writes to file in output directory w/ build #
 	logger *log.Logger
 	// version - version of the app to spit out, currently manually set :(
-	version = "v0.3.0"
+	version = "v0.4.0"
 
 	// flags
 	// debug - enable verbose logging
 	debug bool
+	// unixTimestampDirDisabled - keeps a history of jobs by unix timestamp
+	unixTimestampDirDisabled bool
 	// outputPath - a location to dump artifacts/output as a result of a clingy run
 	outputPath = "./output"
 	// inputFile - a path that contains an input file to digest and run clingy against
@@ -31,12 +35,15 @@ var (
 
 // RootConfig - variables to pass in for reuse and testing
 type RootConfig struct {
-	ExitTools internal.ExitToolsImpl
-	Magick    internal.MagickClientImpl
+	ExitTools  internal.ExitToolsImpl
+	ImageTools images.ImageProcessingImpl
 }
 
 // getOutputPath - a string that generates a union of an (dynamic) output path and build number for artifacts
 func getOutputPath() string {
+	if unixTimestampDirDisabled {
+		return outputPath
+	}
 	return fmt.Sprintf("%s/%s", outputPath, buildNumber)
 }
 
@@ -78,6 +85,7 @@ func RootCmd(c *RootConfig) *cobra.Command {
 	rootCmd.AddCommand(c.newVersionCmd())
 
 	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "enable debug logs")
+	rootCmd.PersistentFlags().BoolVarP(&unixTimestampDirDisabled, "unixTimestampDirDisabled", "u", false, "disable saving output by unix timestamp subdirectories to output directory")
 	rootCmd.PersistentFlags().StringVarP(&outputPath, "outputPath", "o", outputPath, "build path that dumps outputs")
 	rootCmd.PersistentFlags().StringVarP(&inputFile, "inputFile", "i", inputFile, "input file representing a .clingy.yaml")
 	rootCmd.PersistentFlags().StringVarP(&reportStyle, "reportStyle", "r", reportStyle, "report style to output to (choices: 'html-simple', 'images-only')")
@@ -89,8 +97,8 @@ func RootCmd(c *RootConfig) *cobra.Command {
 // Execute ...
 func Execute() {
 	rootConfig := &RootConfig{
-		ExitTools: internal.NewExitToolsClient(),
-		Magick:    internal.NewMagickClient(),
+		ExitTools:  internal.NewExitToolsClient(),
+		ImageTools: lib.GetClingyImageCapture(),
 	}
 	if err := RootCmd(rootConfig).Execute(); err != nil {
 		logger.Println("Error when trying to execute", err)

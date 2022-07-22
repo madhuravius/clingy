@@ -12,7 +12,7 @@ func TestRootCmdExecuteInstantiation(t *testing.T) {
 	mockTools := internal.GenerateMockInterfacesForClingy(t)
 	defer mockTools.Ctrl.Finish()
 
-	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, Magick: mockTools.MagickClientImpl})
+	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, ImageTools: mockTools.MagickClientImpl})
 	output := internal.ExecCobraCmdAndReturnString(t, cmd, []string{})
 	assert.Contains(t, output, "clingy is a tool to test and capture CLI flows")
 }
@@ -21,7 +21,7 @@ func TestRootCmdExecuteHelp(t *testing.T) {
 	mockTools := internal.GenerateMockInterfacesForClingy(t)
 	defer mockTools.Ctrl.Finish()
 
-	cmd := RootCmd(&RootConfig{Magick: mockTools.MagickClientImpl})
+	cmd := RootCmd(&RootConfig{ImageTools: mockTools.MagickClientImpl})
 	output := internal.ExecCobraCmdAndReturnString(t, cmd, []string{"--help"})
 	assert.Contains(t, output, "clingy is a tool to test and capture CLI flows")
 }

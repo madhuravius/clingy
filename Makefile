@@ -10,6 +10,18 @@ build:
 	go build -v -o build/clingy
 .PHONY: build
 
+docs:
+	go run *.go run \
+		-i ./cmd/test_data/01_basic_flow_will_pass.yaml \
+		-o ./docs/example-outputs/html-simple \
+		-u False
+	go run *.go run \
+		-i ./cmd/test_data/01_basic_flow_will_pass.yaml \
+		-o ./docs/example-outputs/images-only \
+		-r images-only \
+		-u False
+.PHONY: docs
+
 start:
 	go run main.go
 .PHONY: start
@@ -30,7 +42,7 @@ lint:
 .PHONY: lint
 
 test:
-	go test ./... -v -cover
+	gotestsum --format testname -- -coverprofile=cover.out ./...
 .PHONY: test
 
 pretty:
@@ -57,3 +69,11 @@ run-docker: build-docker
 		-v ${PWD}/.clingy.yaml:/home/clingy/.clingy.yaml \
 		clingy
 .PHONY: build-docker run-docker
+
+start-docs:
+	docker run \
+		--rm \
+		-it \
+		-p 8000:8000 \
+		-v ${PWD}:/docs squidfunk/mkdocs-material
+.PHONY: start-docs

@@ -53,7 +53,7 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 				}
 
 				// capture window before proceeding
-				imagePath, err := r.Magick.CaptureWindow(logger, getOutputPath(), strconv.Itoa(idx), ".jpg")
+				imagePath, err := r.ImageTools.CaptureWindow(logger, getOutputPath(), strconv.Itoa(idx), ".jpg")
 				if err != nil {
 					logger.Println("Error in capturing image", err)
 					r.ExitTools.Exit(1)
@@ -63,13 +63,13 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 				// if image-only report, add labels/descriptions to the image itself
 				if reportStyle == "images-only" {
 					if step.Label != "" {
-						if err := r.Magick.AddLabelToImage(logger, step.Label, imagePath); err != nil {
+						if err := r.ImageTools.AddLabelToImage(logger, imagePath, step.Label); err != nil {
 							logger.Println("Error in adding label to image", err)
 							r.ExitTools.Exit(1)
 						}
 					}
 					if step.Description != "" {
-						if err := r.Magick.AddDescriptionToImage(logger, step.Description, imagePath); err != nil {
+						if err := r.ImageTools.AddDescriptionToImage(logger, imagePath, step.Description); err != nil {
 							logger.Println("Error in adding description to image", err)
 							r.ExitTools.Exit(1)
 						}
@@ -103,5 +103,4 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 			}
 		},
 	}
-
 }

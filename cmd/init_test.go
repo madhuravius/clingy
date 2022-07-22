@@ -19,7 +19,7 @@ func TestInitCmdExecuteSuccess(t *testing.T) {
 		}
 	}()
 
-	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, Magick: mockTools.MagickClientImpl})
+	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, ImageTools: mockTools.MagickClientImpl})
 	output := internal.ExecCobraCmdAndReturnString(t, cmd, []string{"init", "-i", "../output/.test.clingy.yaml"})
 	assert.Contains(t, output, "Finished writing template to")
 }
@@ -28,7 +28,7 @@ func TestInitCmdHelpSuccess(t *testing.T) {
 	mockTools := internal.GenerateMockInterfacesForClingy(t)
 	defer mockTools.Ctrl.Finish()
 
-	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, Magick: mockTools.MagickClientImpl})
+	cmd := RootCmd(&RootConfig{ExitTools: mockTools.ExitClientsImpl, ImageTools: mockTools.MagickClientImpl})
 	output := internal.ExecCobraCmdAndReturnString(t, cmd, []string{"init", "--help"})
 	assert.Contains(t, output, "instantiate a .clingy.yaml (or input name of your choice) to pwd")
 }
