@@ -1,7 +1,6 @@
 package lib
 
 import (
-	"clingy/internal/images"
 	"errors"
 	"fmt"
 	"log"
@@ -17,12 +16,17 @@ var (
 	NoStepsError = errors.New("error: unable to process template, no steps")
 )
 
-// CheckMagickBinary - check if imagemagick binary found in path
-func CheckMagickBinary() error {
-	if _, err := exec.LookPath("magick"); err != nil {
-		return errors.New("error: magick binary not found")
+// GetMagickBinary - check if imagemagick binary found in path
+func GetMagickBinary() (string, error) {
+	magickPath := "magick"
+	if _, magickErr := exec.LookPath(magickPath); magickErr != nil {
+		// fall back to import and see if that exists
+		magickPath = "import"
+		if _, err := exec.LookPath(magickPath); err != nil {
+			return "", errors.New("error: magick or fallback binary (import) not found")
+		}
 	}
-	return nil
+	return magickPath, nil
 }
 
 func CheckScreenshotBinary() error {
@@ -32,21 +36,9 @@ func CheckScreenshotBinary() error {
 	return nil
 }
 
-func GetClingyImageCapture() images.ImageProcessingImpl {
-	switch runtime.GOOS {
-	case "darwin":
-		return images.NewMacScreenshotClient()
-	case "linux":
-		return images.NewMagickClient()
-	default:
-		fmt.Println("WARNING - Operating system not supported, trying to use imagemagick client.")
-		return images.NewMagickClient()
-	}
-}
-
 // ClingyCanRun - catch-all for ensuring clingy can actually run
 func ClingyCanRun() error {
-	if err := CheckMagickBinary(); err != nil {
+	if _, err := GetMagickBinary(); err != nil {
 		return err
 	}
 

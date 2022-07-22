@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 	"os/exec"
+
+	"clingy/lib"
 )
 
 // magickClient - simple struct mainly that scopes methods to imagemagick for linux users
@@ -27,8 +29,14 @@ func (m magickClient) CaptureWindow(
 	expectedPath := fmt.Sprintf("%s/%s%s", buildDirectory, screenshotName, screenshotExtension)
 	logger.Println("Saving to path", expectedPath)
 
+	magickBinary, err := lib.GetMagickBinary()
+	if err != nil {
+		logger.Println("Unable to find magick binary in adding label to image", err)
+		return "", err
+	}
+
 	imageCommand := exec.Command(
-		"magick",
+		magickBinary,
 		"import",
 		"-window",
 		os.Getenv("WINDOWID"),
