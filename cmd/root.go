@@ -100,7 +100,7 @@ func Execute() {
 		ImageTools: images.GetClingyImageCapture(),
 	}
 	if err := RootCmd(rootConfig).Execute(); err != nil {
-		logger.Println("Error when trying to execute", err)
+		fmt.Println("Error when trying to execute", err)
 		rootConfig.ExitTools.Exit(1)
 	}
 }
