@@ -8,7 +8,6 @@ import (
 
 	"clingy/internal"
 	"clingy/internal/images"
-	"clingy/lib"
 	"github.com/spf13/cobra"
 )
 
@@ -98,7 +97,7 @@ func RootCmd(c *RootConfig) *cobra.Command {
 func Execute() {
 	rootConfig := &RootConfig{
 		ExitTools:  internal.NewExitToolsClient(),
-		ImageTools: lib.GetClingyImageCapture(),
+		ImageTools: images.GetClingyImageCapture(),
 	}
 	if err := RootCmd(rootConfig).Execute(); err != nil {
 		logger.Println("Error when trying to execute", err)
