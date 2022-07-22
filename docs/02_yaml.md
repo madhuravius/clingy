@@ -34,7 +34,7 @@ steps:
 
 If you want to use an input set by an output, you can use it with `$[[KEY NAME]]`, where `KEY NAME`
 is a value you specify in a `key` in a preceding step. This is highlighted in the [outputs section 
-below](/02_yaml/#outputs).
+below](/clingy/02_yaml/#outputs).
 
 ### Outputs
 

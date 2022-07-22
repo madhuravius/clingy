@@ -11,7 +11,7 @@ The examples generated in this file correspond to this
 
 ## HTML Reports - Simple
 
-Example can be found at this link [here](/example-outputs/html-simple).
+Example can be found at this link [here](/clingy/example-outputs/html-simple).
 
 This generates a simple HTML report that includes:
 
@@ -46,6 +46,6 @@ This generates a series of images with the following baked into the image:
 An Example is shown below.
 
 <figure markdown>
-  ![Image title](/example-outputs/images-only/3.jpg)
+  ![Image title](/clingy/example-outputs/images-only/3.jpg)
   <figcaption>Generated image from this report</figcaption>
 </figure>
