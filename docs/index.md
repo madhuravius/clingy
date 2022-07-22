@@ -45,7 +45,7 @@ to whichever application name you are using to execute your commands. For exampl
 
 ==}
 
-See [this link](/01_yaml/) for details on how to structure the clingy YAML files.
+See [this link](/clingy/01_yaml/) for details on how to structure the clingy YAML files.
 
 ```sh
 # MacOS - See above warning and instruction about WINDOW_NAME

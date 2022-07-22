@@ -9,7 +9,7 @@ features/naming conventions.
 * `-i` or `--inputFile` - commands that take an `inputFile` will use this as a clingy YAML template. If
   none specified, will default to `.clingy.yaml`.
 * `-o` or `--outputPath` - on any command if an output path is provided, use that instead. defaults to `./output`
-* `-r` or `--reportStyle` - on any running or report-based command, this changes the desired [report output format](/03_outputs)
+* `-r` or `--reportStyle` - on any running or report-based command, this changes the desired [report output format](/clingy/03_outputs)
 * `-u` or `--unixTimestampDirDisabled` - this will disable unix timestamp subdirectory-based work and instead save directly
 to the specified to the location from `--outputPath` (or `./output` if unspecified)
 
@@ -53,7 +53,7 @@ This can be overridden with a desired path at `-i <PATH YOU SPECIFY`.
 
 `run` will run a specified execution from a clingy YAML file specified by the `--inputFile` (or `.clingy.yaml` by default).
 
-This function defaults to a [simple HTML report](/03_outputs/#html-reports-simple). You can change this with
+This function defaults to a [simple HTML report](/clingy/03_outputs/#html-reports-simple). You can change this with
 the `--reportStyle` flag.
 
 ### Validate
