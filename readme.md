@@ -2,12 +2,12 @@
 
 [![GitHub release](https://img.shields.io/github/release/madhuravius/clingy)](https://github.com/madhuravius/clingy/)
 [![Test](https://github.com/madhuravius/clingy/actions/workflows/test.yaml/badge.svg)](https://github.com/madhuravius/clingy/actions/workflows/test.yaml)
-[![license](https://img.shields.io/github/license/madhuravius/clingy.svg)](https://github.com/madhuravius/clingy/blob/main/LICENSE)
+[![license](https://img.shields.io/github/license/madhuravius/clingy.svg)](https://github.com/madhuravius/clingy/blob/main/LICENSE.md)
 
 A CLI that helps you test other CLIs with end-to-end testing by capturing screenshots of commands in sequence,
 so you don't have to.
 
-See docs here: TBD
+See docs here: [Link](https://madhuravius.github.io/clingy/)
 
 Supported platforms:
 
@@ -16,7 +16,7 @@ Supported platforms:
 
 ## Requirements and Installation
 
-For installation instructions, please see this doc for guidance: TBD
+For installation instructions, please see this doc for guidance: [Link](https://madhuravius.github.io/clingy/)
 
 ### Running natively
 
