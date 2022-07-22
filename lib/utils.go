@@ -19,14 +19,14 @@ var (
 
 // CheckMagickBinary - check if imagemagick binary found in path
 func CheckMagickBinary() error {
-	if _, err := exec.LookPath("magick"); os.IsNotExist(err) {
+	if _, err := exec.LookPath("magick"); err != nil {
 		return errors.New("error: magick binary not found")
 	}
 	return nil
 }
 
 func CheckScreenshotBinary() error {
-	if _, err := exec.LookPath("screenshot"); os.IsNotExist(err) {
+	if _, err := exec.LookPath("screenshot"); err != nil {
 		return errors.New("error: screenshot python3 bin not found")
 	}
 	return nil
