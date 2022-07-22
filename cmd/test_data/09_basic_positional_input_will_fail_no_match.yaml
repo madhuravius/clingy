@@ -1,0 +1,17 @@
+label: "basic flow #1"
+steps:
+  - label: start
+    command: echo
+    args:
+      - Starting
+  - label: saving input
+    command: echo
+    args:
+      - "unmatched-input-value"
+    output_processing:
+      key: sample_input_key
+      matching_args:
+        positional_delimiter: "-"
+        positional_index: 3
+      matching_type: positional
+      fail_on_no_match: true

@@ -49,7 +49,7 @@ func HydrateOutput(logger *log.Logger, output string, clingyData *ClingyTemplate
 	switch outputArgs.MatchingType {
 	case Positional:
 		rawOutput := strings.Split(output, outputArgs.MatchingArgs.PositionalDelimiter)
-		if len(rawOutput) >= outputArgs.MatchingArgs.PositionalIndex && outputArgs.FailOnNoMatch {
+		if len(rawOutput)-1 <= outputArgs.MatchingArgs.PositionalIndex && outputArgs.FailOnNoMatch {
 			return NoMatchError
 		}
 		value = rawOutput[outputArgs.MatchingArgs.PositionalIndex]
