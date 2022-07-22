@@ -7,6 +7,21 @@ By default, `clingy init` will place a `.clingy.yaml` file in your present worki
 * `label` - a label to label the entire clingy workflow
 * `description` - provide a description for the clingy workflow
 
+## Environment variables
+
+If you have environment variables you wish to pass into the YAML, you can do so with the following
+`${ENVIRONMENT_VARIABLE}` in your YAML.  For example:
+
+```yaml
+steps:
+  - command: <INSERT A COMMAND HERE>
+    args:
+      - ${ENVIRONMENT_VARIABLE_HERE}  # should correctly be substituted on use
+```
+
+There is an example in [this file](https://github.com/madhuravius/clingy/blob/main/cmd/test_data/01_basic_flow_will_pass.yaml) 
+utilizing `${TERM}`.
+
 ## Steps
 
 ### Command

@@ -4,7 +4,7 @@ steps:
     description: starting the example flow
     command: echo
     args:
-      - Starting
+      - Starting on ${TERM}
   - label: waiting
     command: sleep
     description: sleeping for 1 second
