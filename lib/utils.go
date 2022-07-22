@@ -71,6 +71,9 @@ func ParseClingyFile(logger *log.Logger, fileName string) (*ClingyTemplate, erro
 		return nil, err
 	}
 
+	// hydrate the yaml data from environment variables in parent context
+	data = []byte(os.ExpandEnv(string(data)))
+
 	var clingyData ClingyTemplate
 	if err = yaml.Unmarshal(data, &clingyData); err != nil {
 		return nil, err
