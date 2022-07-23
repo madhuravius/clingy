@@ -87,7 +87,7 @@ func RootCmd(c *RootConfig) *cobra.Command {
 	rootCmd.PersistentFlags().BoolVarP(&unixTimestampDirDisabled, "unixTimestampDirDisabled", "u", false, "disable saving output by unix timestamp subdirectories to output directory")
 	rootCmd.PersistentFlags().StringVarP(&outputPath, "outputPath", "o", outputPath, "build path that dumps outputs")
 	rootCmd.PersistentFlags().StringVarP(&inputFile, "inputFile", "i", inputFile, "input file representing a .clingy.yaml")
-	rootCmd.PersistentFlags().StringVarP(&reportStyle, "reportStyle", "r", reportStyle, "report style to output to (choices: 'html-simple', 'images-only')")
+	rootCmd.PersistentFlags().StringVarP(&reportStyle, "reportStyle", "r", reportStyle, "report style to output to (choices: 'carousel', 'html-simple', 'images-only')")
 	rootCmd.Flags().SortFlags = true
 
 	return rootCmd

@@ -91,11 +91,11 @@ func (r *RootConfig) newRunCmd() *cobra.Command {
 			switch reportStyle {
 			case "images-only":
 				cmd.Printf("Completed clingy run, generated images at %s.\n", getOutputPath())
-			case "html-simple":
+			case "carousel", "html-simple":
 				cmd.Println("Completed clingy run, generating report.")
 
 				reportPath := fmt.Sprintf("%s/index.html", getOutputPath())
-				if err := internal.GenerateHTMLReport(logger, clingyData, reportPath); err != nil {
+				if err := internal.GenerateHTMLReport(logger, clingyData, reportStyle, reportPath); err != nil {
 					cmd.Println("Error in generating report")
 					r.ExitTools.Exit(1)
 				}
