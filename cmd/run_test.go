@@ -49,7 +49,7 @@ func TestRunCmdExecuteFailures(t *testing.T) {
 			cmd.SetOut(b)
 			cmd.SetErr(b)
 			cmd.SetArgs([]string{"run", "-o", "../output", "-i", fmt.Sprintf("./test_data/%s", file.Name())})
-			err = cmd.Execute()
+			_ = cmd.Execute()
 			out, _ := ioutil.ReadAll(b)
 			assert.Contains(t, string(out), "Error ")
 		}
