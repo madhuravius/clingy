@@ -8,23 +8,10 @@ steps:
   - label: saving input
     command: echo
     args:
-      - "[[sample]]-input-value"
+      - "unmatched-input-value"
     output_processing:
       key: sample_input_key
       matching_args:
         regex: \[\[([^]]+)\]
       matching_type: regex
-  - label: waiting
-    command: sleep
-    args:
-      - 1
-  - label: printing timestamp
-    command: date
-  - label: using output
-    command: echo
-    args:
-      - $[[sample_input_key]]
-  - label: finish
-    command: echo
-    args:
-      - Finishing
+      fail_on_no_match: true

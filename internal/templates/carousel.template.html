@@ -1,0 +1,63 @@
+<html lang="en" data-theme="dark">
+<head>
+    <title>Clingy Report - {{ .Label }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-v4-grid-only@1.0.0/dist/bootstrap-grid.min.css">
+    <style>
+        html {
+            overflow-x: hidden;
+        }
+        main.container {
+            overflow: hidden;
+        }
+        img.baseImage {
+            max-height: 70vh;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="row">
+            <div class="col-sm-7 offset-sm-1">
+                <hgroup>
+                    <h1>
+                        {{ .Label }}
+                    </h1>
+                    <h2>
+                        {{ if .Description }}
+                        {{ .Description }}
+                        {{ end }}
+                    </h2>
+                </hgroup>
+            </div>
+            <div class="col-sm-4">
+                <a href="#" class="contrast outline prev" role="button">Prev</a>
+                <a href="#" class="contrast outline next" role="button">Next</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="siema col-sm-11 offset-sm-1">
+            {{ range $idx, $step := .Steps }}
+                <div class="slide">
+                    <hgroup>
+                        <h3 id="{{ $idx }}">
+                            #{{ $idx }} {{ $step.Label }}
+                        </h3>
+                        <h4>
+                            {{ $step.Description }}
+                        </h4>
+                    </hgroup>
+                    <img class="baseImage" alt="screenshot of {{ $step.Label }}" src="{{ $step.ImageOutput }}" />
+                </div>
+            {{ end }}
+            </div>
+        </div>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/siema@1.5.1/dist/siema.min.js" integrity="sha256-o/z6kPkEdOiAuBTgTdUaFN/F+srDaF3EbsJbkeAboXk=" crossorigin="anonymous"></script>
+<script>
+    const siema = new Siema();
+    document.querySelector('.prev').addEventListener('click', () => siema.prev());
+    document.querySelector('.next').addEventListener('click', () => siema.next());
+</script>
+</html>

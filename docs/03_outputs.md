@@ -24,7 +24,7 @@ This generates a simple HTML report that includes:
 
 ## HTML Reports - Carousel
 
-Example can be found at this link [here](/).
+Example can be found at this link [here](/clingy/example-outputs/carousel).
 
 This generates a simple HTML report that includes:
 

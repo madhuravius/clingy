@@ -9,6 +9,7 @@ import (
 
 // templateFile - yaml formatted
 const templateFile = `label: clingy flow
+description: sample description
 steps:
 - label: start
   description: starting clingy flow

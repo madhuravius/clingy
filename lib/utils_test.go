@@ -18,10 +18,10 @@ func TestParseClingyFile(t *testing.T) {
 		wantErrPartial string
 	}{
 		{
-			name: "test expected failure on 00_will_fail.yaml",
+			name: "test expected failure on 00_will_badly_fail.yaml",
 			args: args{
 				logger:   log.Default(),
-				fileName: "../cmd/test_data/00_will_fail.yaml",
+				fileName: "../cmd/test_data/00_will_badly_fail.yaml",
 			},
 			wantErr:        true,
 			wantErrPartial: "unable to process template, no steps",

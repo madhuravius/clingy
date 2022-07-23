@@ -1,4 +1,5 @@
 label: "basic flow #1"
+description: sample description
 steps:
   - label: start
     command: echo

@@ -2,6 +2,7 @@ package internal
 
 import (
 	"embed"
+	"fmt"
 	"html/template"
 	"log"
 	"os"
@@ -13,10 +14,10 @@ import (
 var templates embed.FS
 
 // GenerateHTMLReport - generate a HTML report by reading from a file and writing to a specified destination
-func GenerateHTMLReport(logger *log.Logger, data *lib.ClingyTemplate, outFile string) error {
+func GenerateHTMLReport(logger *log.Logger, data *lib.ClingyTemplate, reportTemplate string, outFile string) error {
 	logger.Println("Generating HTML report", data.Label, outFile)
 
-	inputTemplateBytes, err := templates.ReadFile("templates/simple-report.template.html")
+	inputTemplateBytes, err := templates.ReadFile(fmt.Sprintf("templates/%s.template.html", reportTemplate))
 	if err != nil {
 		logger.Println("Error in reading embed template", err)
 		return err

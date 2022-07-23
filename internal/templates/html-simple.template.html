@@ -1,0 +1,69 @@
+<html lang="en" data-theme="dark">
+<head>
+    <title>Clingy Report - {{ .Label }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-v4-grid-only@1.0.0/dist/bootstrap-grid.min.css">
+    <style>
+        @media only screen and (min-width: 768px) {
+            aside nav.main-menu {
+                position: fixed;
+                width: 200px;
+                max-height: calc(100vh - 5.5rem);
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-5 col-xs-12">
+                <aside>
+                    <nav class="main-menu closed-on-mobile">
+                        <details open="true">
+                            <summary>Table of Contents</summary>
+                            <ul>
+                                {{ range $idx, $step := .Steps }}
+                                <li>
+                                    <a class="secondary" href="#{{ $idx }}">{{ $step.Label }}</a>
+                                </li>
+                                {{ end }}
+                            </ul>
+                        </details>
+                    </nav>
+                </aside>
+            </div>
+            <div class="col-md-9 col-sm-7 col-xs-12">
+                <div role="document">
+                    <section>
+                        <hgroup>
+                            <h1>
+                                {{ .Label }}
+                            </h1>
+                            <h2>
+                            {{ if .Description }}
+                                {{ .Description }}
+                            {{ end }}
+                            </h2>
+                        </hgroup>
+                        {{ range $idx, $step := .Steps }}
+                        <div>
+                            <hgroup>
+                                <h3 id="{{ $idx }}">
+                                    #{{ $idx }} {{ $step.Label }}
+                                </h3>
+                                <h4>
+                                    {{ $step.Description }}
+                                </h4>
+                            </hgroup>
+                            <img alt="screenshot of {{ $step.Label }}" src="{{ $step.ImageOutput }}" />
+                        </div>
+                        {{ end }}
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

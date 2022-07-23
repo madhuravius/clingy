@@ -13,6 +13,11 @@ build:
 docs:
 	go run *.go run \
 		-i ./cmd/test_data/01_basic_flow_will_pass.yaml \
+		-o ./docs/example-outputs/carousel \
+		-r carousel \
+		-u False
+	go run *.go run \
+		-i ./cmd/test_data/01_basic_flow_will_pass.yaml \
 		-o ./docs/example-outputs/html-simple \
 		-u False
 	go run *.go run \
