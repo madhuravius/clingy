@@ -1,0 +1,117 @@
+<html lang="en" data-theme="dark">
+<head>
+    <title>Clingy Report - basic flow #1</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-v4-grid-only@1.0.0/dist/bootstrap-grid.min.css">
+    <style>
+        @media only screen and (min-width: 768px) {
+            aside nav.main-menu {
+                position: fixed;
+                width: 200px;
+                max-height: calc(100vh - 5.5rem);
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-5 col-xs-12">
+                <aside>
+                    <nav class="main-menu closed-on-mobile">
+                        <details open="true">
+                            <summary>Table of Contents</summary>
+                            <ul>
+                                
+                                <li>
+                                    <a class="secondary" href="#0">start</a>
+                                </li>
+                                
+                                <li>
+                                    <a class="secondary" href="#1">waiting</a>
+                                </li>
+                                
+                                <li>
+                                    <a class="secondary" href="#2">printing timestamp</a>
+                                </li>
+                                
+                                <li>
+                                    <a class="secondary" href="#3">finish</a>
+                                </li>
+                                
+                            </ul>
+                        </details>
+                    </nav>
+                </aside>
+            </div>
+            <div class="col-md-9 col-sm-7 col-xs-12">
+                <div role="document">
+                    <section>
+                        <hgroup>
+                            <h1>
+                                basic flow #1
+                            </h1>
+                            <h2>
+                            
+                                sample description
+                            
+                            </h2>
+                        </hgroup>
+                        
+                        <div>
+                            <hgroup>
+                                <h3 id="0">
+                                    #0 start
+                                </h3>
+                                <h4>
+                                    starting the example flow
+                                </h4>
+                            </hgroup>
+                            <img alt="screenshot of start" src="0.jpg" />
+                        </div>
+                        
+                        <div>
+                            <hgroup>
+                                <h3 id="1">
+                                    #1 waiting
+                                </h3>
+                                <h4>
+                                    sleeping for 1 second
+                                </h4>
+                            </hgroup>
+                            <img alt="screenshot of waiting" src="1.jpg" />
+                        </div>
+                        
+                        <div>
+                            <hgroup>
+                                <h3 id="2">
+                                    #2 printing timestamp
+                                </h3>
+                                <h4>
+                                    printing the date
+                                </h4>
+                            </hgroup>
+                            <img alt="screenshot of printing timestamp" src="2.jpg" />
+                        </div>
+                        
+                        <div>
+                            <hgroup>
+                                <h3 id="3">
+                                    #3 finish
+                                </h3>
+                                <h4>
+                                    finishing the example flow
+                                </h4>
+                            </hgroup>
+                            <img alt="screenshot of finish" src="3.jpg" />
+                        </div>
+                        
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
